@@ -2,27 +2,25 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 
-using namespace std;
 
 class Logger
 {
 public:
     Logger();
-    void write_log(string log);
-    void write_error(string error);
-    void write_debug(string debug);
-    void save(string& message);
-    string getCurrentTime();
+    void write_log(std::string log);
+    void write_error(std::string error);
+    void write_debug(std::string debug);
+    void save(std::string& message);
+    std::string getCurrentTime();
 
 private:
-    string log_file;
-    ofstream file;
+    std::string log_file;
+    std::ofstream file;
 
 };
 

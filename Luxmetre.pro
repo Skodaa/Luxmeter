@@ -1,4 +1,5 @@
-QT       += core gui serialport
+QT       += core gui
+QT       += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

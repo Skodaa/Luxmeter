@@ -10,10 +10,13 @@
 #include "qcombobox.h"
 
 
-class LuxHandler
+class LuxHandler : public QObject
 {
+    Q_OBJECT
 public:
-    LuxHandler();
+    explicit LuxHandler(QObject *parent = nullptr);
+    ~LuxHandler();
+
     void openConnection();
     void closeConnection();
     bool isOpen();
@@ -22,7 +25,7 @@ public:
     void setCombo(QComboBox *combo);
 
 private slots:
-    void NewData();
+    void newData();
 
 signals:
     void gotNewData(QByteArray data);
@@ -31,6 +34,9 @@ private:
     QSerialPort _serialLux;
     Logger *l;
     bool connected;
+
+
 };
+
 
 #endif // LUXHANDLER_H

@@ -6,51 +6,74 @@
 #include <iomanip>
 
 
-using namespace std;
-
 Logger::Logger()
 {
     log_file = "./log/logs.txt";
 }
 
-void Logger::write_log(string log)
+/**
+ * @brief Logger::write_log
+ * function to write a normal log
+ * @param log
+ */
+void Logger::write_log(std::string log)
 {
-    string time = getCurrentTime();
-    string message = time + " [LOG] : " + log;
+    std::string time = getCurrentTime();
+    std::string message = time + " [LOG] : " + log;
     save(message);
 }
 
-void Logger::write_error(string error)
+/**
+ * @brief Logger::write_error
+ * function to write an error log
+ * @param error
+ */
+void Logger::write_error(std::string error)
 {
-    string time = getCurrentTime();
-    string message = time + " [ERR] : " + error;
+    std::string time = getCurrentTime();
+    std::string message = time + " [ERR] : " + error;
     save(message);
 
 }
 
-void Logger::write_debug(string debug)
+/**
+ * @brief Logger::write_debug
+ * function to write a debug log
+ * @param debug
+ */
+void Logger::write_debug(std::string debug)
 {
-    string time = getCurrentTime();
-    string message = time + " [DEBUG] : " + debug;
+    std::string time = getCurrentTime();
+    std::string message = time + " [DEBUG] : " + debug;
     save(message);
 }
 
-void Logger::save(string& message)
+/**
+ * @brief Logger::save
+ * function to save the logs in a file
+ * @param message
+ */
+void Logger::save(std::string& message)
 {
-    file.open(log_file,ios_base::app);
-    file << message << endl;
+    file.open(log_file,std::ios_base::app);
+    file << message << std::endl;
     file.close();
 
 }
 
-string Logger::getCurrentTime()
+/**
+ * @brief Logger::getCurrentTime
+ * function to get the current time in order to time the logs
+ * @return
+ */
+std::string Logger::getCurrentTime()
 {
-    auto now = chrono::system_clock::now();
-    time_t current_time = chrono::system_clock::to_time_t(now);
+    auto now = std::chrono::system_clock::now();
+    std::time_t current_time = std::chrono::system_clock::to_time_t(now);
 
-    stringstream stream;
-    stream << put_time(localtime(&current_time),"%Y-%m-%d_%H-%M-%S");
-    string dateTime = stream.str();
+    std::stringstream stream;
+    stream << std::put_time(localtime(&current_time),"%Y-%m-%d_%H-%M-%S");
+    std::string dateTime = stream.str();
 
     return dateTime;
 }
